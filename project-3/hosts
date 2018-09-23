@@ -1,0 +1,3 @@
+[IOS]
+S1 ansible_network_os=ios
+
