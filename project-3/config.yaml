@@ -1,0 +1,20 @@
+---
+- name: Get arp information
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: running multiple task
+      net_interface:
+        name: fa 1/0/2
+        description: uplink to ISP
+      register: arp_output
+    - debug: var=arp_output.stdout_lines
+
+    - name: arp
+      ios_command:
+        commands:
+          - sh run int fa 1/0/2
+      register: a_output
+    - debug: var=a_output.stdout_lines
+
