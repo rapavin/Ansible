@@ -1,0 +1,16 @@
+---
+- name: Get arp information
+  hosts: IOS
+  gather_facts: false
+
+  tasks:
+    - name: running multiple task
+      ios_command:
+        commands:
+          - sh version
+          - sh ip int br
+        wait_for:
+          - result[0] contains product1
+          - result[1] contains 10.101.101.235
+      register: arp_output
+    - debug: var=arp_output.stdout_lines
