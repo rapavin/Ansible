@@ -1,0 +1,10 @@
+---
+- name: Get arp information
+  hosts: IOS
+  gather_facts: false
+
+  tasks:
+    - name: getting arp table
+      raw: "sh arp"
+      register: arp_output
+    - debug: var=arp_output.stdout_lines
